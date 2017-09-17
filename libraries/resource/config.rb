@@ -3,7 +3,7 @@ class ChefIgnition
     class Config < Chef::Resource
       include SystemdHelper
 
-      resource_name :qemu_ignition_config
+      resource_name :ignition_config
 
       default_action :create
       allowed_actions :create, :delete
