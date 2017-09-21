@@ -16,7 +16,7 @@ class ChefIgnition
 
       property :exists, [TrueClass, FalseClass]
       property :path, String
-      property :config, String, default: lazy { to_conf.to_json }
+      property :config, String, default: lazy { JSON.pretty_generate(to_conf) }
 
       private
 
