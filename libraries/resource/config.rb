@@ -41,7 +41,7 @@ class ChefIgnition
           "networkd" => {
             "units" => networkd.map { |e|
               {
-                "name" => "#{e['name']}.network",
+                "name" => e['name'],
                 "contents" => SystemdHelper::ConfigGenerator.generate_from_hash(e['contents'])
               }
             }
@@ -51,7 +51,7 @@ class ChefIgnition
 
               u = {
                 "enabled" => true,
-                "name" => "#{e['name']}.service",
+                "name" => e['name'],
               }
 
               if e['contents'].is_a?(Hash)
@@ -61,7 +61,7 @@ class ChefIgnition
               if e['dropins'].is_a?(Array)
                 u["dropins"] = e['dropins'].map { |d|
                   {
-                    "name" => "#{d['name']}.conf",
+                    "name" => d['name'],
                     "contents" => SystemdHelper::ConfigGenerator.generate_from_hash(d['contents'])
                   }
                 }
