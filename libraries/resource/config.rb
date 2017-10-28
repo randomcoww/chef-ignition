@@ -11,6 +11,7 @@ class ChefIgnition
       property :networkd, Array, default: []
       property :systemd, Array, default: []
       property :files, Array, default: []
+      property :directories, Array, default: []
       property :base, Hash, default: {}
       property :version, String, default: '2.1.0'
 
@@ -35,6 +36,13 @@ class ChefIgnition
                 "contents" => {
                   "source" => f['contents']
                 }
+              }
+            },
+            "directories" => directories.map { |d|
+              {
+                "filesystem" => 'root',
+                "path" => d['path'],
+                "mode" => d['mode']
               }
             }
           },
